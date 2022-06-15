@@ -18,8 +18,8 @@ export class AdminController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.adminService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.adminService.findOne(id);
   }
 
   @Patch(':id')

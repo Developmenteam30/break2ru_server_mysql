@@ -20,7 +20,7 @@ export class UserVotingService {
   }
 
   async findOne(id: number) {
-    return await this.UserModel.findOne(id);
+    return await this.UserModel.findOne({where: {voting_id: id}});
   }
 
   async update(id: number, updateUserVotingDto: UpdateUserVotingDto) {

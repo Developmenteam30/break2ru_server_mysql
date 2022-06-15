@@ -18,7 +18,7 @@ export class AdminService {
   }
 
   async findOne(id: number) {
-    return await this.UserModel.findOne(id);
+    return await this.UserModel.findOne({where: {id: id}});
   }
 
   async update(id: number, updateAdminDto: UpdateAdminDto) {

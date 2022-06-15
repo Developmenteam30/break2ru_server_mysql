@@ -9,10 +9,10 @@ import { Follower } from './entities/follower.entity';
 export class FollowerService {
   constructor(@InjectRepository(Follower) private UserModel : Repository<Follower>) {}
   async create(createFollowerDto: CreateFollowerDto) {
-    var i = await this.UserModel.findOne({
+    var i = await this.UserModel.findOne({where: {
       sender: createFollowerDto.sender,
       receiver: createFollowerDto.receiver,
-    });
+    }});
     if(i){
       return await this.UserModel.delete(i.follower_id);
     }else{
@@ -22,10 +22,10 @@ export class FollowerService {
   }
 
   async follow(createFollowerDto: CreateFollowerDto) {
-    var i = await this.UserModel.findOne({
+    var i = await this.UserModel.findOne({where: {
       sender: createFollowerDto.sender,
       receiver: createFollowerDto.receiver,
-    });
+    }});
     if(i){
       return {status: 0, msg : 'Already following'};
     }else{

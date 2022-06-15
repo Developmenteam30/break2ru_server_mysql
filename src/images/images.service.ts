@@ -25,7 +25,7 @@ export class ImagesService {
   }
 
   async findOne(id: number) {
-    return await this.UserModel.findOne(id);
+    return await this.UserModel.findOne({where: {img_id: id}});
   }
 
   async update(id: number, updateImageDto: UpdateImageDto) {

@@ -26,7 +26,8 @@ export class PostInfoService {
   }
 
   async findOne(id: number) {
-    return await this.UserModel.findOne(id, {
+    return await this.UserModel.findOne({
+      where: {post_id: id},
       relations: ['images', 'videos']
     });
   }
@@ -35,7 +36,7 @@ export class PostInfoService {
     return await this.UserModel.find({
       relations: ['images', 'videos'],
       order: { post_id: "DESC" },
-      where: {user: id}
+      where: {user_id: id}
     });
   }
 

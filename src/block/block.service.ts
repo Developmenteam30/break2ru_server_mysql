@@ -18,7 +18,7 @@ export class BlockService {
   }
 
   async findOne(id: number) {
-    return await this.UserModel.findOne(id);
+    return await this.UserModel.findOne({where: {block_id: id}});
   }
 
   async update(id: number, updateBlockDto: UpdateBlockDto) {

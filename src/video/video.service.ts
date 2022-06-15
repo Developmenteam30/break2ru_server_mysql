@@ -25,7 +25,7 @@ export class VideoService {
   }
 
   async findOne(id: number) {
-    return await this.UserModel.findOne(id);
+    return await this.UserModel.findOne({where: {v_id: id}});
   }
 
   async update(id: number, updateVideoDto: UpdateVideoDto) {

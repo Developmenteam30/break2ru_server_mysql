@@ -17,7 +17,7 @@ export class HashtagService {
   }
 
   async findOne(id: number) {
-    return await this.UserModel.findOne(id);
+    return await this.UserModel.findOne({where: {h_id: id}});
   }
 
   async update(id: number, updateHashtagDto: UpdateHashtagDto) {

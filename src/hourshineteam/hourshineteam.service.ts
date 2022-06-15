@@ -18,7 +18,7 @@ export class HourshineteamService {
   }
 
   async findOne(id: number) {
-    return await this.UserModel.findOne(id);
+    return await this.UserModel.findOne({where: {shine_id: id}});
   }
 
   async update(id: number, updateHourshineteamDto: UpdateHourshineteamDto) {

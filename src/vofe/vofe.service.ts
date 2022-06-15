@@ -23,7 +23,7 @@ export class VofeService {
   }
 
   async findOne(id: number) {
-    return await this.UserModel.findOne(id);
+    return await this.UserModel.findOne({where: {vote_id: id}});
   }
 
   async update(id: number, updateVofeDto: UpdateVofeDto) {

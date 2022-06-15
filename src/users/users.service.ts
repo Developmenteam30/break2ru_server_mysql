@@ -37,16 +37,16 @@ export class UsersService {
   }
 
   async searchAll(name: string) {
-    return await this.UserModel.find({
+    return await this.UserModel.find({where: {
       user_name: Like(`%${name}%`)
-    });
+    }});
   }
 
   
   async phonelogin(email: string) {
-    var i = await this.UserModel.findOne({
-      mob_no: email,
-    });
+    var i = await this.UserModel.createQueryBuilder('users')
+    .where("(mob_no = :tos)", {tos: email})
+    .getOne();
     if(i){
       const accessToken = this.jwtService.sign({userId :i.user_id});
       return {
@@ -62,13 +62,13 @@ export class UsersService {
   }
 
   async findByEmail(email: string, password: string) {
-    var i = await this.UserModel.findOne({
-      user_email: email.toLowerCase(),
-    });
+    var i = await this.UserModel.createQueryBuilder('users')
+    .where("(user_email = :tos)", {tos: email})
+    .getOne();
     if(i && password){
-      var p = await this.PasswordModel.findOne({
+      var p = await this.PasswordModel.findOne({where: {
         user_id: i.user_id,
-      });
+      }});
       var hash = String(p.password);
       const isMatch = await bcrypt.compare(password, hash);
       if(isMatch){
@@ -89,20 +89,21 @@ export class UsersService {
   }
 
   async findOne(id: number) {
-    return await this.UserModel.findOne(id, {
+    return await this.UserModel.findOne({
+      where: {user_id: id},
       relations: ['posts']
     });
   }
 
   async findonlyOne(id: number) {
-    return await this.UserModel.findOne(id);
+    return await this.UserModel.findOne({where: {user_id:id}});
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
     await this.UserModel.update(id, updateUserDto);
-    return await this.UserModel.findOne({
+    return await this.UserModel.findOne({where:{
       user_id: id,
-    });
+    }});
 
   }
 
@@ -111,9 +112,9 @@ export class UsersService {
   }
 
   async updatepassword(id: number, oldpassword: string, newpassword: string, uid: number) {
-    var user = await this.PasswordModel.findOne({
+    var user = await this.PasswordModel.findOne({where: {
       user_id: uid,
-    });
+    }});
     var hash = String(user.password);
     const isMatch = await bcrypt.compare(oldpassword, hash);
     if(isMatch){
@@ -125,12 +126,12 @@ export class UsersService {
     }
   }
   async verifyotp(email: string, otp: string){
-    var i = await this.UserModel.findOne({
-      user_email: email.toLowerCase(),
-    });
-    var p = await this.PasswordModel.findOne({
+    var i = await this.UserModel.createQueryBuilder('users')
+    .where("(user_email = :tos)", {tos: email.toLowerCase()})
+    .getOne();
+    var p = await this.PasswordModel.findOne({where: {
       user_id: i.user_id,
-    });
+    }});
     if(i && otp && p){
       var hash = String(p.otp);
       const isMatch = await bcrypt.compare(email+otp, hash);
@@ -144,12 +145,12 @@ export class UsersService {
     }
   }
   async changepassword(email: string, password: string){
-    var i = await this.UserModel.findOne({
-      user_email: email.toLowerCase(),
-    });
-    var p = await this.PasswordModel.findOne({
+    var i = await this.UserModel.createQueryBuilder('users')
+    .where("(user_email = :tos)", {tos: email.toLowerCase()})
+    .getOne();
+    var p = await this.PasswordModel.findOne({where: {
       user_id: i.user_id,
-    });
+    }});
     if(i && password){
       const saltOrRounds = 10;
       p.password = await bcrypt.hash(password, saltOrRounds);
@@ -157,14 +158,14 @@ export class UsersService {
     }
   }
   async forgotpassword(email: string){
-    var i = await this.UserModel.findOne({
-      user_email: email.toLowerCase(),
-    });
+    var i = await this.UserModel.createQueryBuilder('users')
+    .where("(user_email = :tos)", {tos: email.toLowerCase()})
+    .getOne();
     if(i){
       try{
-        var p = await this.PasswordModel.findOne({
+        var p = await this.PasswordModel.findOne({where: {
           user_id: i.user_id,
-        });
+        }});
         var otp = Math.floor(Math.random() * 10100)+1000;
         const saltOrRounds = 10;
         p.otp = await bcrypt.hash(email+otp.toString(), saltOrRounds);

@@ -3,7 +3,7 @@ import { CreateViewDto } from './dto/create-view.dto';
 import { UpdateViewDto } from './dto/update-view.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { View } from './entities/view.entity';
+import { type, View } from './entities/view.entity';
 
 @Injectable()
 export class ViewsService {
@@ -17,10 +17,10 @@ export class ViewsService {
     return await this.UserModel.find();
   }
 
-  async findOne(id: number, type: string) {
+  async findOne(id: number, types: string) {
     return await this.UserModel.find({
       order: { view_id: "DESC" },
-      where: { data_id: id, type: type}
+      where: { data_id: id, type: types as type}
     });
   }
 

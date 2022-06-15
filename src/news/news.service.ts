@@ -17,7 +17,7 @@ export class NewsService {
   }
 
   async findOne(id: number) {
-    return await this.UserModel.findOne(id);
+    return await this.UserModel.findOne({where: {news_id: id}});
   }
 
   async update(id: number, updateNewsDto: UpdateNewsDto) {
