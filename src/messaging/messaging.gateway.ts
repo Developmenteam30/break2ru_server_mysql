@@ -4,8 +4,8 @@ import { Logger } from '@nestjs/common';
 import { MessagingService } from './messaging.service';
 import { CreateMessagingDto } from './dto/create-messaging.dto';
 import { UpdateMessagingDto } from './dto/update-messaging.dto';
-
-@WebSocketGateway(8001, { namespace: 'messaging' })
+var port = process.env.PORT;
+@WebSocketGateway(parseInt(port) || 8001, { namespace: 'messaging' })
 export class MessagingGateway implements OnGatewayDisconnect, OnGatewayConnection {
   private readonly logger = new Logger(MessagingGateway.name);
   constructor(private readonly messagingService: MessagingService) {}
