@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateVofeDto } from './dto/create-vofe.dto';
 import { UpdateVofeDto } from './dto/update-vofe.dto';
-import { Vofe } from './entities/Vofe.entity';
+import { Vofe } from './entities/vofe.entity';
 
 @Injectable()
 export class VofeService {
