@@ -4,13 +4,25 @@ import { Repository } from 'typeorm';
 import { CreateMessagingDto } from './dto/create-messaging.dto';
 import { UpdateMessagingDto } from './dto/update-messaging.dto';
 import { Messaging } from './entities/messaging.entity';
-
+import { UsersService } from 'src/users/users.service';
+import { NotificationsService } from 'src/notifications.service';
+import * as firebase from 'firebase-admin';
 @Injectable()
 export class MessagingService {
-  constructor(@InjectRepository(Messaging) private UserModel : Repository<Messaging>) {}
+  m: firebase.messaging.TokenMessage =  {token: null, notification: null};
+  constructor(@InjectRepository(Messaging) private UserModel : Repository<Messaging>, private readonly usersService: UsersService, private readonly not: NotificationsService) {}
   async create(createMessagingDto: CreateMessagingDto) {
     var data = await this.UserModel.create(createMessagingDto);
-    return await this.UserModel.save(data);
+    var u = await this.UserModel.save(data);
+    // var user_id = (await u.senderid).user_id;
+    // var user = await this.usersService.findonlyOne(user_id);
+    // this.m.token = user.token_android.toString();
+    // this.m.notification = {
+    //   "title":"New message from "+(await u.senderid).user_name,
+    //   "body":u.message
+    // }
+    // this.not.sendAll([this.m], false);
+    return u;
   }
 
   findAll() {

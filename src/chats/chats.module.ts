@@ -10,6 +10,7 @@ import { UsersService } from 'src/users/users.service';
 import { Password } from 'src/users/entities/password.entity';
 import { JwtStrategy } from 'src/users/jwt.strategy';
 import { JwtModule } from '@nestjs/jwt';
+import { NotificationsService } from 'src/notifications.service';
 
 @Module({
   imports: [
@@ -19,6 +20,6 @@ import { JwtModule } from '@nestjs/jwt';
     })
   ],
   controllers: [ChatsController],
-  providers: [ChatsService, MessagingService, UsersService, JwtStrategy]
+  providers: [ChatsService, MessagingService, UsersService, JwtStrategy, NotificationsService]
 })
 export class ChatsModule {}

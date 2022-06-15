@@ -34,4 +34,16 @@ export class Chat{
     @Field()
     @Column('int', { default: 0 })
     type:number;
+
+    @Field()
+    @Column("int", { default: 0 })
+    fromcount:number;
+
+    @Field()
+    @Column("int", { default: 0 })
+    tocount:number;
+
+    @Field()
+    @Column("timestamp", { nullable: false, default: () => 'CURRENT_TIMESTAMP' })
+    timestamps: number;
 }

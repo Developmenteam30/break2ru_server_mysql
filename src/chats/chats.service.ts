@@ -24,6 +24,7 @@ export class ChatsService {
   async findOne(id: number, to: number) {
     return await this.UserModel.createQueryBuilder('chat')
     .where("(froms = :froms AND tos = :tos) OR (froms = :tos AND tos = :froms)", {froms: id, tos: to})
+    .orderBy("timestamps", "DESC")
     .getMany();
   }
 

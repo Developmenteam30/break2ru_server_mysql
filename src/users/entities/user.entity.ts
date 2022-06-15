@@ -82,7 +82,7 @@ export class User {
     date_time: String;
 
     @Field()
-    @Column({ length: 100, nullable: true })
+    @Column({ length: 300, nullable: true })
     token_android: String;
 
     @Field()

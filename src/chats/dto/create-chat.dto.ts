@@ -21,4 +21,13 @@ export class CreateChatDto {
 
     @ApiProperty()
     type:number;
+
+    @ApiProperty()
+    fromcount: number;
+
+    @ApiProperty()
+    tocount: number;
+
+    @ApiProperty()
+    timestamps: number;
 }

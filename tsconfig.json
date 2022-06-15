@@ -16,6 +16,8 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
+    "resolveJsonModule": true,
+    "typeRoots": [ "node_modules/@types", "./typings.d.ts" ],
     "noFallthroughCasesInSwitch": false
   }
 }
