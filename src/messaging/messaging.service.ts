@@ -32,14 +32,14 @@ export class MessagingService {
   async findOne(id: number) {
     return await this.UserModel.find({
       order: {message_id: 'DESC'},
-      where: {roomId: id}
+      where: {roomId: id.toString()}
     });
   }
 
   async findOnlyOneMessaging(id: number) {
     return await this.UserModel.find({
       order: {message_id: 'DESC'},
-      where: {roomId: id}
+      where: {roomId: id.toString()}
     });
   }
 
