@@ -5,7 +5,7 @@ import { MessagingService } from './messaging.service';
 import { CreateMessagingDto } from './dto/create-messaging.dto';
 import { UpdateMessagingDto } from './dto/update-messaging.dto';
 var port = process.env.PORT;
-@WebSocketGateway(27122, { namespace: 'messaging' })
+@WebSocketGateway({ namespace: 'messaging' })
 export class MessagingGateway implements OnGatewayDisconnect, OnGatewayConnection {
   private readonly logger = new Logger(MessagingGateway.name);
   constructor(private readonly messagingService: MessagingService) {}
