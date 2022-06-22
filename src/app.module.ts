@@ -31,6 +31,7 @@ import { ViewsModule } from './views/views.module';
 import { MessagingModule } from './messaging/messaging.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
