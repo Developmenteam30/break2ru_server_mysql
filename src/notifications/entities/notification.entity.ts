@@ -20,7 +20,7 @@ export class Notification {
     sender_id:number;
 
     @Field(() => User)
-    @ManyToOne(() => User, { eager: true })
+    @ManyToOne(() => User, { eager: true, onDelete: 'CASCADE' })
     @JoinColumn()
     user_sender:Promise<User>;
 
@@ -29,7 +29,7 @@ export class Notification {
     receiver_id:number;
 
     @Field(() => User)
-    @ManyToOne(() => User, { eager: true })
+    @ManyToOne(() => User, { eager: true, onDelete: 'CASCADE' })
     @JoinColumn()
     user_receiver:Promise<User>;
     

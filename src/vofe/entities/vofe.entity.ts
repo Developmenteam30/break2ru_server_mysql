@@ -15,7 +15,7 @@ export class Vofe {
 
 
     @Field(() => User)
-    @ManyToOne(() => User, { eager: true })
+    @ManyToOne(() => User, { eager: true, onDelete: 'CASCADE' })
     @JoinColumn()
     user:Promise<User>;
 

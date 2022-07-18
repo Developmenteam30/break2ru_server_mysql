@@ -14,7 +14,7 @@ export class Chat{
     froms:number;
 
     @Field(() => User)
-    @ManyToOne(() => User, { eager: true })
+    @ManyToOne(() => User, { eager: true, onDelete: 'CASCADE' })
     @JoinColumn()
     from_user:Promise<User>;
 
@@ -23,7 +23,7 @@ export class Chat{
     tos:number;
 
     @Field(() => User)
-    @ManyToOne(() => User, { eager: true })
+    @ManyToOne(() => User, { eager: true, onDelete: 'CASCADE' })
     @JoinColumn()
     to_user:Promise<User>;
 

@@ -14,7 +14,7 @@ export class Like {
     user_id:number;
 
     @Field(() => User)
-    @ManyToOne(() => User, { eager: true })
+    @ManyToOne(() => User, { eager: true, onDelete: 'CASCADE' })
     @JoinColumn()
     user:Promise<User>;
 

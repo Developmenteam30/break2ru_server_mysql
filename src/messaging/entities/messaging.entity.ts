@@ -27,7 +27,7 @@ export class Messaging {
     video: string;
 
     @Field(() => User)
-    @ManyToOne(() => User, { eager: true })
+    @ManyToOne(() => User, { eager: true, onDelete: 'CASCADE' })
     @JoinColumn()
     senderid:Promise<User>;
 

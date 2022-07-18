@@ -17,7 +17,7 @@ import {
     @Column()
     participantId: string;
   
-    @ManyToOne(() => Chat)
+    @ManyToOne(() => Chat, {onDelete: 'CASCADE'})
     @JoinColumn()
     chatRoom: Chat;
   }

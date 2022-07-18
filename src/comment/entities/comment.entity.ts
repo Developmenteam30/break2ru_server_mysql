@@ -18,7 +18,7 @@ export class Comment{
     user_id:number;
 
     @Field(() => User)
-    @ManyToOne(() => User, { eager: true })
+    @ManyToOne(() => User, { eager: true, onDelete: 'CASCADE' })
     @JoinColumn()
     user:Promise<User>;
 
@@ -42,7 +42,7 @@ export class Comment{
     other_comment_id:number;
 
     @Field(() => Comment)
-    @ManyToMany(type => Comment)
+    @ManyToMany(type => Comment, {onDelete: 'CASCADE'})
     @JoinTable()
     other_comment: Promise<Comment>;
 }

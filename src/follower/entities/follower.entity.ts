@@ -14,7 +14,7 @@ export class Follower {
     sender:number;
 
     @Field(() => User)
-    @ManyToOne(() => User, { eager: true })
+    @ManyToOne(() => User, { eager: true, onDelete: 'CASCADE' })
     @JoinColumn()
     user_sender:Promise<User>;
 
@@ -23,7 +23,7 @@ export class Follower {
     receiver:number;
 
     @Field(() => User)
-    @ManyToOne(() => User, { eager: true })
+    @ManyToOne(() => User, { eager: true, onDelete: 'CASCADE' })
     @JoinColumn()
     user_receiver:Promise<User>;
 
