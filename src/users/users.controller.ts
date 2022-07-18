@@ -60,9 +60,9 @@ export class UsersController {
 
   @ApiBearerAuth('access-token')
   @UseGuards(JwtAuthGuard)
-  @Delete(':id')
-  remove(@Param('id') id: number) {
-    return this.usersService.remove(id);
+  @Delete()
+  remove(@Req() user) {
+    return this.usersService.remove(user.user.userId);
   }
 
   @ApiBearerAuth('access-token')
