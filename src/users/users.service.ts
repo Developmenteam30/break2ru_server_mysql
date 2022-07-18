@@ -48,7 +48,10 @@ export class UsersService {
     .getOne();
     if(!is){
       return {
-         status: 200
+         status: 200,
+         user_email: user_email,
+         user_name: user_name,
+         mob_no: mob_no
       };
     }else{
       return {
