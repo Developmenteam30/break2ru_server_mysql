@@ -19,9 +19,9 @@ export class UsersService {
     const saltOrRounds = 10;
     createUserDto.user_email = createUserDto.user_email.toLowerCase();
     var is = await this.UserModel.createQueryBuilder('users')
-    .where("(user_email = :tos OR user_name = :iis)", {tos: createUserDto.user_email, iis: createUserDto.user_name})
+    .where("(user_email = :tos OR user_name = :iis OR mob_no = :mob)", {tos: createUserDto.user_email, iis: createUserDto.user_name, mob:createUserDto.mob_no})
     .getOne();
-    if(is){
+    if(!is){
       password = await bcrypt.hash(password, saltOrRounds);
       var i = await this.UserModel.save(createUserDto);
       var createPassword = {user_id: i.user_id, password: password}
