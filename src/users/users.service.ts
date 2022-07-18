@@ -18,18 +18,27 @@ export class UsersService {
   async create(createUserDto: CreateUserDto, password) : Promise<any> {
     const saltOrRounds = 10;
     createUserDto.user_email = createUserDto.user_email.toLowerCase();
-    password = await bcrypt.hash(password, saltOrRounds);
-    var i = await this.UserModel.save(createUserDto);
-    var createPassword = {user_id: i.user_id, password: password}
-    var p = await this.PasswordModel.save(createPassword);
-    const accessToken = this.jwtService.sign(i.user_id.toString());
-    return {
-       expires_in: 3600,
-       access_token: accessToken,
-       user_id: i.user_id,
-       user: i,
-       status: 200
-    };
+    var is = await this.UserModel.createQueryBuilder('users')
+    .where("(user_email = :tos OR user_name = :iis)", {tos: createUserDto.user_email, iis: createUserDto.user_name})
+    .getOne();
+    if(is){
+      password = await bcrypt.hash(password, saltOrRounds);
+      var i = await this.UserModel.save(createUserDto);
+      var createPassword = {user_id: i.user_id, password: password}
+      var p = await this.PasswordModel.save(createPassword);
+      const accessToken = this.jwtService.sign(i.user_id.toString());
+      return {
+         expires_in: 3600,
+         access_token: accessToken,
+         user_id: i.user_id,
+         user: i,
+         status: 200
+      };
+    }else{
+      return {
+        error: "User already registered!",
+     };
+   }
   }
 
   async findAll() {
