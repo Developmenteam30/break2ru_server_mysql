@@ -41,6 +41,23 @@ export class UsersService {
    }
   }
 
+  async checkuser(user_name: string, user_email: string, mob_no: string) : Promise<any> {
+    user_email = user_email.toLowerCase();
+    var is = await this.UserModel.createQueryBuilder('users')
+    .where("(user_email = :tos OR user_name = :iis OR mob_no = :mob)", {tos: user_email, iis: user_name, mob:mob_no})
+    .getOne();
+    if(!is){
+      return {
+         status: 200
+      };
+    }else{
+      return {
+        status: 400,
+        error: "User already registered!",
+     };
+   }
+  }
+
   async findAll() {
     return await this.UserModel.find();
   }

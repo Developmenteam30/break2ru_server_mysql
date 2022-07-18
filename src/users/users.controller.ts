@@ -14,6 +14,11 @@ export class UsersController {
     return this.usersService.create(createUserDto, create.password);
   }
 
+  @Post('/checkuser')
+  checkusers(@Body() req) {
+    return this.usersService.checkuser(req.user_email, req.user_name, req.mob_no);
+  }
+
   @Post('/login')
   login(@Body() req) {
     return this.usersService.findByEmail(req.email, req.password);
