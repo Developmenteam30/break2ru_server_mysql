@@ -16,7 +16,7 @@ export class UsersController {
 
   @Post('/checkuser')
   checkusers(@Body() req) {
-    return this.usersService.checkuser(req.user_email, req.user_name, req.mob_no);
+    return this.usersService.checkuser(req.user_name, req.user_email, req.mob_no);
   }
 
   @Post('/login')
