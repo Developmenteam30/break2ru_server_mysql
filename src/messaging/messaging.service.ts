@@ -22,7 +22,7 @@ export class MessagingService {
       "body":u.message
     }
     var r = await this.not.sendOne(this.m, false);
-    console.log(r);
+    console.log(this.m, r);
     return u;
   }
 
