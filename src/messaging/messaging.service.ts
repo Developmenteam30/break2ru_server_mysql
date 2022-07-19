@@ -14,14 +14,14 @@ export class MessagingService {
   async create(createMessagingDto: CreateMessagingDto) {
     var data = await this.UserModel.create(createMessagingDto);
     var u = await this.UserModel.save(data);
-    // var user_id = (await u.senderid).user_id;
-    // var user = await this.usersService.findonlyOne(user_id);
-    // this.m.token = user.token_android.toString();
-    // this.m.notification = {
-    //   "title":"New message from "+(await u.senderid).user_name,
-    //   "body":u.message
-    // }
-    // this.not.sendAll([this.m], false);
+    var user_id = (await u.senderid).user_id;
+    var user = await this.usersService.findonlyOne(user_id);
+    this.m.token = user.token_android.toString();
+    this.m.notification = {
+      "title":"New message from "+(await u.senderid).user_name,
+      "body":u.message
+    }
+    this.not.sendAll([this.m], false);
     return u;
   }
 
