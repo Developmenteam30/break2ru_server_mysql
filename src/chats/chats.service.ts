@@ -16,7 +16,7 @@ export class ChatsService {
 
   async findAll(to: number) {
     return await this.UserModel.find({
-      order: { chat_id: "DESC" },
+      order: { timestamps: "DESC" },
       where: [{tos:to},{froms:to}]
     });
     // return await this.UserModel.createQueryBuilder('chat')

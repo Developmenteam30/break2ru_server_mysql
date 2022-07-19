@@ -4,6 +4,7 @@ import { Logger } from '@nestjs/common';
 import { MessagingService } from './messaging.service';
 import { CreateMessagingDto } from './dto/create-messaging.dto';
 import { UpdateMessagingDto } from './dto/update-messaging.dto';
+import { SendMessagingDto } from './dto/send-messaging.dto';
 var port = process.env.PORT;
 @WebSocketGateway({ namespace: 'messaging' })
 export class MessagingGateway implements OnGatewayDisconnect, OnGatewayConnection {
@@ -37,6 +38,12 @@ export class MessagingGateway implements OnGatewayDisconnect, OnGatewayConnectio
   @SubscribeMessage('room.leave')
   leaveChatRoom(client: Socket, roomId: string) {
     client.leave(roomId);
+  }
+
+  @SubscribeMessage('message.emit.notification')
+  async sendnotification(client: Socket, payload: SendMessagingDto) {
+    var msg = await this.messagingService.sendnot(payload.user_id, payload.text, payload.title);
+    this.wss.to('users-'+payload.user_id).emit('message.emit.userupdate', msg);
   }
 
   @SubscribeMessage('message.emit.server')

@@ -9,21 +9,23 @@ import { NotificationsService } from 'src/notifications.service';
 import * as firebase from 'firebase-admin';
 @Injectable()
 export class MessagingService {
-  m: firebase.messaging.TokenMessage =  {token: null, notification: null};
+  m: firebase.messaging.TokenMessage =  {token: null, notification: null, data : {"sound" : "default"}};
   constructor(@InjectRepository(Messaging) private UserModel : Repository<Messaging>, private readonly usersService: UsersService, private readonly not: NotificationsService) {}
   async create(createMessagingDto: CreateMessagingDto) {
     var data = await this.UserModel.create(createMessagingDto);
     var u = await this.UserModel.save(data);
-    var user_id = (await u.senderid).user_id;
+    return u;
+  }
+
+  async sendnot(user_id: number, text: string, title: string) {
     var user = await this.usersService.findonlyOne(user_id);
     this.m.token = user.token_android.toString();
     this.m.notification = {
-      "title":"New message from "+(await u.senderid).user_name,
-      "body":u.message
+      "title":title,
+      "body":text,
     }
     var r = await this.not.sendOne(this.m, false);
-    console.log(this.m, r);
-    return u;
+    return r;
   }
 
   findAll() {
