@@ -15,6 +15,6 @@ export class NotificationsService {
     }
   }
   public async sendAll(messages: firebase.messaging.TokenMessage[], dryRun?: boolean) {
-    return firebase.messaging().sendAll(messages, dryRun);
+    return await firebase.messaging().sendAll(messages, dryRun);
   }
 }
