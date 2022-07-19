@@ -16,6 +16,12 @@ export class LikeController {
     return this.likeService.create(createLikeDto);
   }
 
+  @Get('/notest')
+  testnot() {
+    return this.likeService.testnot();
+  }
+
+
   @ApiBearerAuth('access-token')
   @UseGuards(JwtAuthGuard)
   @Get()

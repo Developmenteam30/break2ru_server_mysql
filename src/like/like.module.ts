@@ -3,12 +3,13 @@ import { LikeService } from './like.service';
 import { LikeController } from './like.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Like } from './entities/like.entity';
+import { NotificationsService } from 'src/notifications.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Like]),
   ],
   controllers: [LikeController],
-  providers: [LikeService]
+  providers: [LikeService,NotificationsService]
 })
 export class LikeModule {}
