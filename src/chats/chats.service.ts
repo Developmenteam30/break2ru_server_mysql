@@ -15,14 +15,14 @@ export class ChatsService {
   }
 
   async findAll(to: number) {
-    return await this.UserModel.find({
-      order: { timestamps: "DESC" },
-      where: [{tos:to},{froms:to}]
-    });
-    // return await this.UserModel.createQueryBuilder('chat')
-    // .where("(tos = :tos) OR (froms = :tos)", {tos: to})
-    // .orderBy("chat_id", "DESC")
-    // .getMany();
+    // return await this.UserModel.find({
+    //   order: { timestamps: "DESC" },
+    //   where: [{tos:to},{froms:to}]
+    // });
+    return await this.UserModel.createQueryBuilder('chat')
+    .where("(tos = :tos) OR (froms = :tos)", {tos: to})
+    .orderBy("timestamps", "DESC")
+    .getMany();
   }
 
   async findOne(id: number, to: number) {
