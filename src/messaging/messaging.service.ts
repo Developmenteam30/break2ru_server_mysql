@@ -54,7 +54,7 @@ export class MessagingService {
     });
   }
 
-  async remove(id: number) {
-    return await this.UserModel.delete(id);
+  async remove(message_id: number) {
+    return await this.UserModel.delete(message_id);
   }
 }

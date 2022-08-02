@@ -73,7 +73,8 @@ export class MessagingGateway implements OnGatewayDisconnect, OnGatewayConnectio
   }
 
   @SubscribeMessage('removeMessaging')
-  remove(@MessageBody() id: number) {
-    return this.messagingService.remove(id);
+  async remove(@MessageBody() message_id: number) {
+    console.log(message_id);
+    return await this.messagingService.remove(message_id);
   }
 }
