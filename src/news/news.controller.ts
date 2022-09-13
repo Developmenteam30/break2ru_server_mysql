@@ -16,8 +16,8 @@ export class NewsController {
     return this.newsService.create(createNewsDto);
   }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
     return this.newsService.findAll();
