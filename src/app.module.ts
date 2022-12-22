@@ -71,7 +71,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
     LikeCommentModule,
     UserVotingModule,
     VofeModule,
-    MongooseModule.forRoot('mongodb://root:JZ3atM8TZbWc@13.233.35.149:27017/break2ru?authSource=admin'),
+    // MongooseModule.forRoot('mongodb://root:JZ3atM8TZbWc@13.233.35.149:27017/break2ru?authSource=admin'),
     ChatsModule,
     ViewsModule,
     MessagingModule, 
