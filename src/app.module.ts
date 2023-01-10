@@ -36,11 +36,11 @@ import { MailerModule } from '@nestjs-modules/mailer';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: '202.21.38.119',
+      host: '119.18.49.21',
       port: 3306,
-      username: 'break2ru_raghu',
-      password: 'Rnath123@',
-      database: 'break2ru_test',
+      username: 'ciuodymy_raghu',
+      password: 'Rnath1399',
+      database: 'ciuodymy_break2ru',
       entities: [
         User
       ],
