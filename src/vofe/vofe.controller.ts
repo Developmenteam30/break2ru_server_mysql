@@ -9,22 +9,22 @@ import { JwtAuthGuard } from '../users/jwt-auth.guard';
 export class VofeController {
   constructor(private readonly vofeService: VofeService) {}
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createVofeDto: CreateVofeDto[]) {
     return this.vofeService.create(createVofeDto);
   }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
     return this.vofeService.findAll();
   }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.vofeService.findOne(+id);
@@ -37,8 +37,8 @@ export class VofeController {
     return this.vofeService.update(+id, updateVofeDto);
   }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.vofeService.remove(+id);

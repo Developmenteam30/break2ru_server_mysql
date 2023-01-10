@@ -9,22 +9,22 @@ import { JwtAuthGuard } from '../users/jwt-auth.guard';
 export class UserVotingController {
   constructor(private readonly userVotingService: UserVotingService) {}
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createUserVotingDto: CreateUserVotingDto) {
     return this.userVotingService.create(createUserVotingDto);
   }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
     return this.userVotingService.findAll();
   }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id') id: number) {
     return this.userVotingService.findOne(+id);
@@ -37,8 +37,8 @@ export class UserVotingController {
     return this.userVotingService.update(+id, updateUserVotingDto);
   }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: number) {
     return this.userVotingService.remove(+id);
