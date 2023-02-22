@@ -9,50 +9,50 @@ import { JwtAuthGuard } from 'src/users/jwt-auth.guard';
 export class LikeController {
   constructor(private readonly likeService: LikeService) {}
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Post()
-  create(@Body() createLikeDto: CreateLikeDto) {
-    return this.likeService.create(createLikeDto);
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Post()
+  // create(@Body() createLikeDto: CreateLikeDto) {
+  //   return this.likeService.create(createLikeDto);
+  // }
 
-  @Get('/notest')
-  testnot() {
-    return this.likeService.testnot();
-  }
+  // @Get('/notest')
+  // testnot() {
+  //   return this.likeService.testnot();
+  // }
 
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Get()
-  findAll() {
-    return this.likeService.findAll();
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Get()
+  // findAll() {
+  //   return this.likeService.findAll();
+  // }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.likeService.findOne(id);
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Get(':id')
+  // findOne(@Param('id') id: number) {
+  //   return this.likeService.findOne(id);
+  // }
 
   
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Get('user/:id')
-  findOneUser(@Param('id') id: number) {
-    return this.likeService.findOneUser(id);
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Get('user/:id')
+  // findOneUser(@Param('id') id: number) {
+  //   return this.likeService.findOneUser(id);
+  // }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Patch(':id')
-  update(@Param('id') id: number, @Body() updateLikeDto: UpdateLikeDto) {
-    return this.likeService.update(+id, updateLikeDto);
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Patch(':id')
+  // update(@Param('id') id: number, @Body() updateLikeDto: UpdateLikeDto) {
+  //   return this.likeService.update(+id, updateLikeDto);
+  // }
 
-  @Delete(':id/:post')
-  remove(@Param('id') id: number, @Param('post') post: number) {
-    return this.likeService.remove(id, post);
-  }
+  // @Delete(':id/:post')
+  // remove(@Param('id') id: number, @Param('post') post: number) {
+  //   return this.likeService.remove(id, post);
+  // }
 }

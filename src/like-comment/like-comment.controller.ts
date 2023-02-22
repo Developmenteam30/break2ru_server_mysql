@@ -9,38 +9,38 @@ import { JwtAuthGuard } from 'src/users/jwt-auth.guard';
 export class LikeCommentController {
   constructor(private readonly likeCommentService: LikeCommentService) {}
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Post()
-  create(@Body() createLikeCommentDto: CreateLikeCommentDto) {
-    return this.likeCommentService.create(createLikeCommentDto);
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Post()
+  // create(@Body() createLikeCommentDto: CreateLikeCommentDto) {
+  //   return this.likeCommentService.create(createLikeCommentDto);
+  // }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Get()
-  findAll() {
-    return this.likeCommentService.findAll();
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Get()
+  // findAll() {
+  //   return this.likeCommentService.findAll();
+  // }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.likeCommentService.findOne(+id);
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.likeCommentService.findOne(+id);
+  // }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateLikeCommentDto: UpdateLikeCommentDto) {
-    return this.likeCommentService.update(+id, updateLikeCommentDto);
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateLikeCommentDto: UpdateLikeCommentDto) {
+  //   return this.likeCommentService.update(+id, updateLikeCommentDto);
+  // }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.likeCommentService.remove(+id);
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.likeCommentService.remove(+id);
+  // }
 }

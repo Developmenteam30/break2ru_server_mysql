@@ -9,52 +9,52 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 export class FollowerController {
   constructor(private readonly followerService: FollowerService) {}
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Post()
-  create(@Body() createFollowerDto: CreateFollowerDto) {
-    return this.followerService.create(createFollowerDto);
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Post()
+  // create(@Body() createFollowerDto: CreateFollowerDto) {
+  //   return this.followerService.create(createFollowerDto);
+  // }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Post('follow')
-  follow(@Body() createFollowerDto: CreateFollowerDto) {
-    return this.followerService.follow(createFollowerDto);
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Post('follow')
+  // follow(@Body() createFollowerDto: CreateFollowerDto) {
+  //   return this.followerService.follow(createFollowerDto);
+  // }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Get()
-  findAll() {
-    return this.followerService.findAll();
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Get()
+  // findAll() {
+  //   return this.followerService.findAll();
+  // }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Get('followers/:id')
-  findOne(@Param('id') id: number) {
-    return this.followerService.findOne(id);
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Get('followers/:id')
+  // findOne(@Param('id') id: number) {
+  //   return this.followerService.findOne(id);
+  // }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Get('followings/:id')
-  findFollowing(@Param('id') id: number) {
-    return this.followerService.findFollowings(id);
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Get('followings/:id')
+  // findFollowing(@Param('id') id: number) {
+  //   return this.followerService.findFollowings(id);
+  // }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Patch(':id')
-  update(@Param('id') id: number, @Body() updateFollowerDto: UpdateFollowerDto) {
-    return this.followerService.update(id, updateFollowerDto);
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Patch(':id')
+  // update(@Param('id') id: number, @Body() updateFollowerDto: UpdateFollowerDto) {
+  //   return this.followerService.update(id, updateFollowerDto);
+  // }
 
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
-  @Delete(':id')
-  remove(@Param('id') id: number) {
-    return this.followerService.remove(id);
-  }
+  // @ApiBearerAuth('access-token')
+  // @UseGuards(JwtAuthGuard)
+  // @Delete(':id')
+  // remove(@Param('id') id: number) {
+  //   return this.followerService.remove(id);
+  // }
 }
